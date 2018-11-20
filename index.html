@@ -27,8 +27,50 @@
   <link rel="stylesheet" href="./assets/font-awesome.min.css">
   <link rel="stylesheet" href="./assets/statexpflat.css">
   <link rel="stylesheet" href="./assets/statexpflat-grid.css">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+  <style type="text/css">
+    .leaflet-container {
+      background-color: #c5e8ff;
+    }
+    .line {
+      fill: none;
+      stroke: #f11eab;
+      stroke-width: 3;
+    }
 
-  <style>
+    .grid line {
+      stroke: lightgrey;
+      stroke-opacity: 0.7;
+      shape-rendering: crispEdges;
+    }
+
+    .overlay {
+      fill: none;
+      pointer-events: all;
+    }
+  
+    .dot {
+      fill: #8f0164;
+      stroke: #fff;
+    }
+  
+    .dot:hover {
+      stroke: #360026;
+    }
+  
+    div.tooltip3 {	
+      position: absolute;			
+      text-align: center;			
+      width: 80px;					
+      height: 30px;					
+      padding: 2px;				
+      font: 12px sans-serif;		
+      background: lightsteelblue;	
+      border: 0px;		
+      border-radius: 8px;			
+      pointer-events: none;			
+    }
+
     a:lang(ar),
     a:lang(ckb),
     a:lang(kk-arab),
@@ -2161,7 +2203,12 @@
 
     <!--END PAGE-->
   </div>
-	<script src="./assets/becode-app.js"></script>
+  <!--<script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+  <script src="./assets/becode-app.js"></script> 
+
 </body>
 
 </html>
