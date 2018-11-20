@@ -470,7 +470,7 @@ function loadAPI() {
                 divToolTip3.transition()		
                     .duration(200)		
                     .style("opacity", .9);		
-                    divToolTip3.html('Value : '+a+'<br>Element : '+m)	
+                    divToolTip3.html('Value : '+a)//+'<br>Element : '+m)	
                     .style("left", (d3.event.pageX) + "px")		
                     .style("top", (d3.event.pageY - 28) + "px");	
                 })					
