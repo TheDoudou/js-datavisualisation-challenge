@@ -4,7 +4,7 @@ Duré : 5 Jours
 
 Exercise Solo
 
-Site web : [http://thedoudou.myds.me/be_code/js-datavisualisation-challenge/](ICI)
+Site web : [ICI](http://thedoudou.myds.me/be_code/js-datavisualisation-challenge/)
 
 Les points ou j'ai eu du mal :
 - D3js vraiment sympa mais il faut du temps pour la prise en main
