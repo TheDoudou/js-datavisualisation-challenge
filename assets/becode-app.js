@@ -529,14 +529,12 @@ function oranizeArray(data) {
         else if (count == data.length)
         	line += { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" } ]
         else*/
-			line += [ { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" }]
+			line += '[ { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" }]'
 		count++
-}
+    })
         //line += 
         //let line = infoArray.join(",")
         //lineArray.push(index == 0 ? "Pays,date1,2010–12\n" + line : line)
-    })
-    console.log(line)
     return line
 }
 
