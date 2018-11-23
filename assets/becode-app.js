@@ -21,9 +21,9 @@ div1.classList.add('map1')
 // Div pour le graph
 //*
 let div11 = document.createElement('div')
-div11.setAttribute('id', 'graph1')
+div11.setAttribute('id', 'div1')
 div11.setAttribute('style', 'width: 800px; height: 700px')
-div11.classList.add('graph1')
+div11.classList.add('div1')
 //*/
 
 //document.getElementById("table1").before(div1)
@@ -274,8 +274,8 @@ function drawChecker(data, i) {
 
         for (let i = 0; i < data.length; i++) {
             if (i == 9 || i == 18 || i == 27)
-                check = d3.select(".graph1").append('div')
-            check = d3.select(".graph1").append('input')
+                check = d3.select(".div1").append('div')
+            check = d3.select(".div1").append('input')
             check.attr("type", "checkbox")
             check.attr("class", "checkbox"+i)
             check.attr("name", data[i][0][1])
@@ -293,16 +293,16 @@ function drawChecker(data, i) {
                             arrayDraw.splice(j, 1)
                     }
                 }
-                d3.select(".graph2").remove()
-                drawChart2(arrayToJson(arrayDraw))
+                d3.select(".graph1").remove()
+                drawChart1(arrayToJson(arrayDraw))
             })
 
-            txt = d3.select(".graph1").append('span')
+            txt = d3.select(".div1").append('span')
             txt.text(data[i][0][1]+' ')
         }
 }
 
-function drawChart2(data) {
+function drawChart1(data) {
     let width = 700
     let height = 500
     let margin = 50
@@ -344,11 +344,11 @@ function drawChart2(data) {
 
     let color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    let svg = d3.select(".graph1").append("svg")
+    let svg = d3.select(".div1").append("svg")
         .attr("width", (width + margin) + "px")
         .attr("height", (height + margin) + "px")
-        .attr("class", "graph2")
-        .append('g')
+        .attr("class", "graph1")
+        .append('g') 
         .attr("transform", `translate(${margin}, ${margin})`);
 
     let line = d3.line()
@@ -411,11 +411,22 @@ function drawChart2(data) {
         .on("mouseover", function (d) {
             d3.select(this)
                 .style("cursor", "pointer")
-                .append("text")
-                .attr("class", "text")
-                .text('Pourcent : ' + d.percent)
-                .attr("x", d => xScale(d.date) + 5)
-                .attr("y", d => yScale(d.percent) - 10);
+                .append('svg:text')
+                .attr('x', d => xScale(d.date) + 5)
+                .attr('y', d => yScale(d.percent) - 10)
+                .attr('class', 'text')
+                .append('svg:tspan')
+                .attr('x', d => xScale(d.date) + 5)
+                .attr('y', d => yScale(d.percent) - 50)
+                .text(function(d) { return 'Pourcentage : '+d.percent; })
+                .append('svg:tspan')
+                .attr('x', d => xScale(d.date) + 5)
+                .attr('y', d => yScale(d.percent) - 35)
+                .text(function(d) { return 'Population : '+d.pop; })
+                .append('svg:tspan')
+                .attr('x', d => xScale(d.date) + 5)
+                .attr('y', d => yScale(d.percent) - 20) 
+                .text(function(d) { return 'Crimes : '+d.crime; })
         })
         .on("mouseout", function (d) {
             d3.select(this)
@@ -475,7 +486,7 @@ console.log(dataCountry1)
 
 drawChecker(dataCountry1)
 
-drawChart2(arrayToJson([[[0,''],[''],[''],['']]]))
+drawChart1(arrayToJson([[[0,''],[''],[''],['']]]))
 
 
 
@@ -488,8 +499,83 @@ drawChart2(arrayToJson([[[0,''],[''],[''],['']]]))
 
 
 
+function drawCharDimple(csvIn) {
+    var svg = dimple.newSvg(".graph2", 800, 600);
+    d3.csvParse(csvIn, function (data) {
+      var myChart = new dimple.chart(svg, data);
+      myChart.setBounds(60, 30, 510, 330)
+      myChart.addCategoryAxis("x", ["Pays"]);
+      myChart.addMeasureAxis("y", "date1");
+      myChart.addSeries("Channel", dimple.plot.bar);
+      myChart.addLegend(65, 10, 510, 20, "right");
+      myChart.draw();
+    });
+}
+
+
+
+function oranizeArray(data) {
+    let line = ''
+    let count = 0
+
+    for (let i = 0; i < data.length; i++) {
+        data[i].shift()
+    }
+
+    data.forEach(function (infoArray, index) {
+        /*
+        if (count == 0)
+            line += [ { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" }
+        else if (count == data.length)
+        	line += { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" } ]
+        else*/
+			line += [ { "Pays" : "'+infoArray[0]+'", "2007-09" : "'+infoArray[1]+'", "2010–12" : "'+infoArray[2]+'" }]
+		count++
+}
+        //line += 
+        //let line = infoArray.join(",")
+        //lineArray.push(index == 0 ? "Pays,date1,2010–12\n" + line : line)
+    })
+    console.log(line)
+    return line
+}
+
+
+
+
+
+let div2 = document.createElement('div')
+div2.setAttribute('id', 'graph2')
+div2.classList.add('graph2')
+
+document.getElementById("table2").before(div2)
 
 let table2 = tableToArray('table2')
+
+drawCharDimple(oranizeArray(table2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
